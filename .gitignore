@@ -1,0 +1,15 @@
+.env
+.idea/
+uploads/
+logs/
+chroma_db/
+chroma_db_backup_*/
+data/
+!data/
+data/*
+!data/.gitkeep
+.pytest_cache/
+pytest-cache-files-*/
+__pycache__/
+*.pyc
+tests/tmp_chroma_db/

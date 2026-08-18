@@ -1,0 +1,5 @@
+Project Notes
+
+The office assistant project is currently in the scaffolding phase.
+The next milestone is to connect the task endpoint to a real orchestration flow.
+Testing coverage should focus on the tool layer first.

@@ -1,0 +1,177 @@
+[
+  {
+    "document_file": "sample_device_manual.txt",
+    "question": "设备启动前需要检查什么？",
+    "expected_type": "answerable",
+    "expected_keywords": ["环境", "电源", "急停按钮", "防护门"],
+    "description": "直接答案：验证设备启动前检查要求。"
+  },
+  {
+    "document_file": "sample_device_manual.txt",
+    "question": "设备启动时为什么要先低速空载运行？",
+    "expected_type": "answerable",
+    "expected_keywords": ["低速空载", "三到五分钟", "声音", "振动"],
+    "description": "直接答案：验证启动步骤和观察要求。"
+  },
+  {
+    "document_file": "sample_device_manual.txt",
+    "question": "设备运行过程中需要记录哪些参数？",
+    "expected_type": "answerable",
+    "expected_keywords": ["运行模式", "温度", "压力", "电流", "速度"],
+    "description": "直接答案：验证运行记录要求。"
+  },
+  {
+    "document_file": "sample_device_manual.txt",
+    "question": "设备报警后应该先做什么？",
+    "expected_type": "answerable",
+    "expected_keywords": ["现场安全", "报警代码", "暂停键", "急停按钮"],
+    "description": "直接答案：验证报警后的首要处理步骤。"
+  },
+  {
+    "document_file": "sample_device_manual.txt",
+    "question": "温度报警和压力报警分别应检查什么？",
+    "expected_type": "answerable",
+    "expected_keywords": ["冷却", "传感器", "管路", "阀门"],
+    "description": "综合答案：需要结合报警分类处理说明。"
+  },
+  {
+    "document_file": "sample_device_manual.txt",
+    "question": "设备正常停机流程包括哪些步骤？",
+    "expected_type": "answerable",
+    "expected_keywords": ["停止进料", "低速", "停止键", "关闭主电源"],
+    "description": "直接答案：验证正常停机流程。"
+  },
+  {
+    "document_file": "sample_device_manual.txt",
+    "question": "设备异常停机后为什么不能立即重新启动？",
+    "expected_type": "answerable",
+    "expected_keywords": ["人员安全", "急停按钮", "隔离标识", "未经确认"],
+    "description": "综合答案：需要结合异常停机和安全要求。"
+  },
+  {
+    "document_file": "sample_device_manual.txt",
+    "question": "设备日常维护每班、每日和每周分别要做什么？",
+    "expected_type": "answerable",
+    "expected_keywords": ["每班", "每日", "每周", "急停按钮测试"],
+    "description": "综合答案：需要整合多个维护频率要求。"
+  },
+  {
+    "document_file": "sample_device_manual.txt",
+    "question": "设备运行和停机过程中分别需要注意什么？",
+    "expected_type": "answerable",
+    "expected_keywords": ["不得离岗", "安全模式", "低速", "停机记录"],
+    "description": "综合答案：需要同时检索运行注意事项和停机流程。"
+  },
+  {
+    "document_file": "sample_training_material.md",
+    "question": "培训目标包括哪些层面？",
+    "expected_type": "answerable",
+    "expected_keywords": ["岗位基础职责", "标准作业流程", "风险意识"],
+    "description": "直接答案：验证培训目标。"
+  },
+  {
+    "document_file": "sample_training_material.md",
+    "question": "培训对象分为哪几类？",
+    "expected_type": "answerable",
+    "expected_keywords": ["新入职员工", "转岗员工", "复训员工"],
+    "description": "直接答案：验证培训对象。"
+  },
+  {
+    "document_file": "sample_training_material.md",
+    "question": "培训流程包括哪些阶段？",
+    "expected_type": "answerable",
+    "expected_keywords": ["准备", "授课", "练习", "考核", "归档"],
+    "description": "直接答案：验证培训流程。"
+  },
+  {
+    "document_file": "sample_training_material.md",
+    "question": "培训考核通过标准是什么？",
+    "expected_type": "answerable",
+    "expected_keywords": ["八十分", "场景演练", "重大风险项"],
+    "description": "直接答案：验证考核通过标准。"
+  },
+  {
+    "document_file": "sample_training_material.md",
+    "question": "哪些情况需要重新参加培训或补训？",
+    "expected_type": "answerable",
+    "expected_keywords": ["低于八十分", "高风险错误", "迟到超过十五分钟", "补训"],
+    "description": "综合答案：需要结合考核标准和注意事项。"
+  },
+  {
+    "document_file": "sample_training_material.md",
+    "question": "新员工完成培训后还需要满足哪些要求？",
+    "expected_type": "answerable",
+    "expected_keywords": ["跟岗观察", "两个工作日", "培训确认表", "直属负责人"],
+    "description": "综合答案：需要结合考核通过和培训后要求。"
+  },
+  {
+    "document_file": "sample_training_material.md",
+    "question": "培训期间资料和敏感信息应如何处理？",
+    "expected_type": "answerable",
+    "expected_keywords": ["统一发布", "旧版截图", "脱敏处理", "外部资料"],
+    "description": "综合答案：验证资料版本和敏感信息处理。"
+  },
+  {
+    "document_file": "sample_faq.txt",
+    "question": "账号无法登录时如何处理？",
+    "expected_type": "answerable",
+    "expected_keywords": ["账号", "密码", "多因素验证", "工单"],
+    "description": "直接答案：验证账号登录 FAQ。"
+  },
+  {
+    "document_file": "sample_faq.txt",
+    "question": "忘记系统密码怎么办？",
+    "expected_type": "answerable",
+    "expected_keywords": ["统一身份入口", "密码重置", "身份验证"],
+    "description": "直接答案：验证密码重置 FAQ。"
+  },
+  {
+    "document_file": "sample_faq.txt",
+    "question": "在哪里查询最新培训资料？",
+    "expected_type": "answerable",
+    "expected_keywords": ["内部知识库", "培训资料栏目", "版本号"],
+    "description": "直接答案：验证资料查询 FAQ。"
+  },
+  {
+    "document_file": "sample_faq.txt",
+    "question": "发现资料版本不一致怎么办？",
+    "expected_type": "answerable",
+    "expected_keywords": ["暂停使用", "文档管理员", "有效版本"],
+    "description": "直接答案：验证资料异常处理 FAQ。"
+  },
+  {
+    "document_file": "sample_faq.txt",
+    "question": "新员工培训通常包括哪些环节？",
+    "expected_type": "answerable",
+    "expected_keywords": ["签到", "流程演示", "场景练习", "反馈归档"],
+    "description": "直接答案：验证培训安排 FAQ。"
+  },
+  {
+    "document_file": "sample_device_manual.txt",
+    "question": "ZXQ99 purchase price",
+    "expected_type": "unanswerable",
+    "expected_keywords": ["未检索到相关内容"],
+    "description": "无答案：模拟设备采购价格问题，当前文档不包含价格信息。"
+  },
+  {
+    "document_file": "sample_training_material.md",
+    "question": "Q4BonusFormula annual bonus calculation",
+    "expected_type": "unanswerable",
+    "expected_keywords": ["未检索到相关内容"],
+    "description": "无答案：模拟年终奖金计算问题，培训资料不包含薪酬规则。"
+  },
+  {
+    "document_file": "sample_faq.txt",
+    "question": "OverseasWarranty SLA region matrix",
+    "expected_type": "unanswerable",
+    "expected_keywords": ["未检索到相关内容"],
+    "description": "无答案：模拟海外售后策略问题，FAQ 不包含售后区域政策。"
+  },
+  {
+    "document_file": "sample_device_manual.txt",
+    "question": "CloudLicenseTier enterprise subscription fee",
+    "expected_type": "unanswerable",
+    "expected_keywords": ["未检索到相关内容"],
+    "description": "无答案：模拟云许可证费用问题，设备手册不包含订阅费用。"
+  }
+]

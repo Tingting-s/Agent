@@ -1,0 +1,146 @@
+[
+  {
+    "document_file": "sample_device_manual.txt",
+    "question": "设备启动前需要检查什么？",
+    "expected_type": "answerable",
+    "expected_keywords": ["环境", "外观", "电源", "急停按钮", "防护门"],
+    "forbidden_keywords": ["采购价格", "售后政策", "薪酬"],
+    "description": "设备手册：启动前检查要求。"
+  },
+  {
+    "document_file": "sample_device_manual.txt",
+    "question": "设备启动时为什么要先低速空载运行？",
+    "expected_type": "answerable",
+    "expected_keywords": ["低速空载", "三到五分钟", "声音", "振动", "温升"],
+    "forbidden_keywords": ["采购价格", "年终奖", "客户合同"],
+    "description": "设备手册：启动步骤中的低速空载观察。"
+  },
+  {
+    "document_file": "sample_device_manual.txt",
+    "question": "设备报警后应该先做什么？",
+    "expected_type": "answerable",
+    "expected_keywords": ["现场安全", "报警代码", "暂停键", "急停按钮"],
+    "forbidden_keywords": ["培训签到", "密码重置", "采购价格"],
+    "description": "设备手册：报警后的首要处置。"
+  },
+  {
+    "document_file": "sample_device_manual.txt",
+    "question": "温度报警和压力报警分别应检查什么？",
+    "expected_type": "multi_chunk",
+    "expected_keywords": ["温度报警", "冷却", "传感器", "压力报警", "管路", "阀门"],
+    "forbidden_keywords": ["薪酬", "采购", "外部供应商"],
+    "description": "设备手册：报警分类处理，需要定位相关分类说明。"
+  },
+  {
+    "document_file": "sample_device_manual.txt",
+    "question": "设备运行和停机过程中分别需要注意什么？",
+    "expected_type": "multi_chunk",
+    "expected_keywords": ["不得离岗", "安全模式", "停止进料", "低速", "停机记录"],
+    "forbidden_keywords": ["密码", "培训资料栏目", "采购价格"],
+    "description": "设备手册：运行注意事项和停机流程综合。"
+  },
+  {
+    "document_file": "sample_device_manual.txt",
+    "question": "这台设备的采购价格是多少？",
+    "expected_type": "unanswerable",
+    "expected_keywords": ["未检索到与问题相关的内容"],
+    "forbidden_keywords": ["环境", "电源", "急停按钮", "低速空载", "停机流程"],
+    "description": "设备手册：不包含采购价格，应拒答。"
+  },
+  {
+    "document_file": "sample_training_material.md",
+    "question": "培训目标包括哪些层面？",
+    "expected_type": "answerable",
+    "expected_keywords": ["岗位基础职责", "作业边界", "标准作业流程", "风险意识"],
+    "forbidden_keywords": ["设备采购", "售后", "密码重置"],
+    "description": "培训资料：培训目标。"
+  },
+  {
+    "document_file": "sample_training_material.md",
+    "question": "培训对象分为哪几类？",
+    "expected_type": "answerable",
+    "expected_keywords": ["新入职员工", "转岗员工", "复训员工"],
+    "forbidden_keywords": ["设备报警", "采购价格", "售后政策"],
+    "description": "培训资料：培训对象分类。"
+  },
+  {
+    "document_file": "sample_training_material.md",
+    "question": "培训流程包括哪些阶段？",
+    "expected_type": "answerable",
+    "expected_keywords": ["准备", "授课", "练习", "考核", "归档"],
+    "forbidden_keywords": ["停机流程", "账号锁定", "采购价格"],
+    "description": "培训资料：培训流程阶段。"
+  },
+  {
+    "document_file": "sample_training_material.md",
+    "question": "哪些情况需要重新参加培训或补训？",
+    "expected_type": "multi_chunk",
+    "expected_keywords": ["低于八十分", "高风险错误", "迟到超过十五分钟", "补训"],
+    "forbidden_keywords": ["管路接口", "设备采购", "售后区域"],
+    "description": "培训资料：综合考核标准和注意事项中的补训条件。"
+  },
+  {
+    "document_file": "sample_training_material.md",
+    "question": "新员工完成培训后还需要满足哪些要求？",
+    "expected_type": "multi_chunk",
+    "expected_keywords": ["跟岗观察", "两个工作日", "培训确认表", "直属负责人"],
+    "forbidden_keywords": ["设备报警代码", "密码重置", "采购价格"],
+    "description": "培训资料：考核通过和培训后要求综合。"
+  },
+  {
+    "document_file": "sample_training_material.md",
+    "question": "员工年终奖金如何计算？",
+    "expected_type": "unanswerable",
+    "expected_keywords": ["未检索到与问题相关的内容"],
+    "forbidden_keywords": ["八十分", "补训", "签到", "跟岗观察"],
+    "description": "培训资料：不包含薪酬奖金规则，应拒答。"
+  },
+  {
+    "document_file": "sample_faq.txt",
+    "question": "账号无法登录时如何处理？",
+    "expected_type": "answerable",
+    "expected_keywords": ["账号", "密码", "网络", "多因素验证", "工单"],
+    "forbidden_keywords": ["采购价格", "年终奖", "管路阀门"],
+    "description": "FAQ：账号无法登录处理。"
+  },
+  {
+    "document_file": "sample_faq.txt",
+    "question": "忘记系统密码怎么办？",
+    "expected_type": "answerable",
+    "expected_keywords": ["统一身份入口", "密码重置", "身份验证", "不得共享"],
+    "forbidden_keywords": ["停机记录", "采购价格", "培训台账"],
+    "description": "FAQ：密码重置。"
+  },
+  {
+    "document_file": "sample_faq.txt",
+    "question": "在哪里查询最新培训资料？",
+    "expected_type": "answerable",
+    "expected_keywords": ["内部知识库", "培训资料栏目", "版本号", "发布时间"],
+    "forbidden_keywords": ["设备采购", "工资", "售后"],
+    "description": "FAQ：最新培训资料查询。"
+  },
+  {
+    "document_file": "sample_faq.txt",
+    "question": "资料版本不一致且遇到无法判断的异常问题时怎么办？",
+    "expected_type": "multi_chunk",
+    "expected_keywords": ["暂停使用", "文档管理员", "有效版本", "暂停处理", "负责人升级"],
+    "forbidden_keywords": ["采购价格", "年终奖金", "设备报价"],
+    "description": "FAQ：综合资料版本异常和无法判断异常的处理。"
+  },
+  {
+    "document_file": "sample_faq.txt",
+    "question": "新员工培训通常包括哪些环节，迟到是否需要补训？",
+    "expected_type": "multi_chunk",
+    "expected_keywords": ["签到", "流程演示", "场景练习", "考核", "迟到超过十五分钟", "补训"],
+    "forbidden_keywords": ["设备采购", "售后 SLA", "密码共享"],
+    "description": "FAQ：综合新员工培训环节和迟到补训规则。"
+  },
+  {
+    "document_file": "sample_faq.txt",
+    "question": "海外售后 SLA 区域矩阵是什么？",
+    "expected_type": "unanswerable",
+    "expected_keywords": ["未检索到与问题相关的内容"],
+    "forbidden_keywords": ["账号", "密码", "培训资料", "报警代码"],
+    "description": "FAQ：不包含海外售后 SLA，应拒答。"
+  }
+]

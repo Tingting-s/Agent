@@ -1,0 +1,569 @@
+[
+  {
+    "document_file": "rag_device_manual.txt",
+    "question": "设备启动前需要检查什么？",
+    "expected_type": "answerable",
+    "expected_keywords": ["环境检查", "外观检查", "电源检查", "介质检查", "安全状态检查"],
+    "forbidden_keywords": ["采购价格", "年终奖"],
+    "expected_answer": "设备启动前必须完成环境检查、外观检查、电源检查、介质检查和安全状态检查。",
+    "description": "验证启动前检查总览。"
+  },
+  {
+    "document_file": "rag_device_manual.txt",
+    "question": "设备启动前的环境检查包括哪些内容？",
+    "expected_type": "answerable",
+    "expected_keywords": ["无积水", "无杂物", "通道畅通", "温度", "湿度"],
+    "forbidden_keywords": ["采购价格", "保修期"],
+    "expected_answer": "环境检查包括确认现场无积水、无杂物、通道畅通，温度和湿度处于允许范围。",
+    "description": "验证环境检查细节。"
+  },
+  {
+    "document_file": "rag_device_manual.txt",
+    "question": "设备启动前外观检查要看哪些部位？",
+    "expected_type": "answerable",
+    "expected_keywords": ["外壳", "观察窗", "护罩", "标识"],
+    "forbidden_keywords": ["培训费用", "海外售后"],
+    "expected_answer": "外观检查包括确认设备外壳、观察窗、护罩和标识完好。",
+    "description": "验证外观检查依据。"
+  },
+  {
+    "document_file": "rag_device_manual.txt",
+    "question": "设备启动前电源检查包括什么？",
+    "expected_type": "answerable",
+    "expected_keywords": ["主电源开关", "接地线", "控制柜"],
+    "forbidden_keywords": ["公司年终奖", "采购价格"],
+    "expected_answer": "电源检查包括确认主电源开关、接地线和控制柜状态正常。",
+    "description": "验证电源检查依据。"
+  },
+  {
+    "document_file": "rag_device_manual.txt",
+    "question": "设备启动前介质检查要确认什么？",
+    "expected_type": "answerable",
+    "expected_keywords": ["气源", "冷却水", "润滑油", "工艺介质"],
+    "forbidden_keywords": ["手机 App", "工资标准"],
+    "expected_answer": "介质检查包括确认气源、冷却水、润滑油或其他工艺介质满足运行要求。",
+    "description": "验证介质检查依据。"
+  },
+  {
+    "document_file": "rag_device_manual.txt",
+    "question": "设备启动前安全状态检查包括哪些内容？",
+    "expected_type": "answerable",
+    "expected_keywords": ["急停按钮", "管路接口", "防护门", "危险区域"],
+    "forbidden_keywords": ["培训补贴", "厂家地址"],
+    "expected_answer": "安全状态检查包括确认急停按钮复位、管路接口连接牢固、防护门关闭、人员已离开危险区域。",
+    "description": "验证安全状态检查依据。"
+  },
+  {
+    "document_file": "rag_device_manual.txt",
+    "question": "设备启动步骤是什么？",
+    "expected_type": "answerable",
+    "expected_keywords": ["启动前检查", "接通主电源", "控制面板", "启动按钮", "低速空载"],
+    "forbidden_keywords": ["保修期", "培训费用"],
+    "expected_answer": "设备启动应先完成启动前检查，接通主电源，确认控制面板正常，再按启动按钮，进入低速空载状态。",
+    "description": "验证启动步骤。"
+  },
+  {
+    "document_file": "rag_device_manual.txt",
+    "question": "设备启动后为什么要低速空载观察？",
+    "expected_type": "answerable",
+    "expected_keywords": ["低速空载", "观察 3 到 5 分钟", "声音", "振动", "压力", "温度"],
+    "forbidden_keywords": ["年终奖", "海外访问"],
+    "expected_answer": "设备启动后应进入低速空载状态，并观察 3 到 5 分钟，重点关注声音、振动、压力、温度和指示灯状态。",
+    "description": "验证低速空载观察。"
+  },
+  {
+    "document_file": "rag_device_manual.txt",
+    "question": "启动时控制面板需要确认哪些状态？",
+    "expected_type": "answerable",
+    "expected_keywords": ["正常上电", "无急停", "门禁", "压力", "温度", "报警"],
+    "forbidden_keywords": ["采购价格", "补贴"],
+    "expected_answer": "启动时应观察控制面板是否正常上电，确认无急停、门禁、压力、温度等报警信息。",
+    "description": "验证控制面板状态。"
+  },
+  {
+    "document_file": "rag_device_manual.txt",
+    "question": "设备运行过程中需要注意什么？",
+    "expected_type": "answerable",
+    "expected_keywords": ["不得离岗", "不得随意修改参数", "不得屏蔽报警", "温度", "压力", "振动"],
+    "forbidden_keywords": ["厂家地址", "保修期"],
+    "expected_answer": "设备运行过程中不得离岗，不得随意修改关键参数，不得屏蔽报警，并应定期观察温度、压力、振动、声音和指示灯。",
+    "description": "验证运行注意事项。"
+  },
+  {
+    "document_file": "rag_device_manual.txt",
+    "question": "为什么设备运行时操作人员不得离岗？",
+    "expected_type": "answerable",
+    "expected_keywords": ["不得离岗", "观察", "异常", "记录", "上报"],
+    "forbidden_keywords": ["采购价格", "培训补贴"],
+    "expected_answer": "运行期间需要持续观察设备状态，发现异常应及时记录并上报，因此操作人员不得离岗。",
+    "description": "验证不得离岗的依据。"
+  },
+  {
+    "document_file": "rag_device_manual.txt",
+    "question": "运行期间能否随意修改速度和压力参数？",
+    "expected_type": "answerable",
+    "expected_keywords": ["不得随意修改", "速度", "压力", "温度", "关键参数"],
+    "forbidden_keywords": ["手机 App", "海外售后"],
+    "expected_answer": "运行期间不得随意修改速度、压力、温度、时间等关键参数。",
+    "description": "验证参数修改限制。"
+  },
+  {
+    "document_file": "rag_device_manual.txt",
+    "question": "操作人员为什么不能屏蔽报警？",
+    "expected_type": "answerable",
+    "expected_keywords": ["不得屏蔽报警", "安全联锁", "故障", "继续运行"],
+    "forbidden_keywords": ["工资标准", "培训费用"],
+    "expected_answer": "屏蔽报警可能绕过安全联锁并掩盖故障，报警未确认前不得屏蔽报警或让设备带故障继续运行。",
+    "description": "验证屏蔽报警风险。"
+  },
+  {
+    "document_file": "rag_device_manual.txt",
+    "question": "设备报警后应该如何处理？",
+    "expected_type": "answerable",
+    "expected_keywords": ["确认报警信息", "报警代码", "降低运行负载", "通知维护人员", "必要时停机"],
+    "forbidden_keywords": ["采购价格", "年终奖"],
+    "expected_answer": "设备报警后应确认报警信息，查看报警代码，必要时降低负载，通知维护人员，涉及安全风险时按要求停机。",
+    "description": "验证报警处理流程。"
+  },
+  {
+    "document_file": "rag_device_manual.txt",
+    "question": "设备报警时为什么不得强行复位？",
+    "expected_type": "answerable",
+    "expected_keywords": ["报警未确认前", "不得强行复位", "不得带故障继续运行"],
+    "forbidden_keywords": ["厂家地址", "保修期"],
+    "expected_answer": "报警未确认前，不得强行复位，也不得让设备带故障继续运行。",
+    "description": "验证强行复位限制。"
+  },
+  {
+    "document_file": "rag_device_manual.txt",
+    "question": "设备停机流程是什么？",
+    "expected_type": "answerable",
+    "expected_keywords": ["停止进料", "等待当前周期完成", "停机按钮", "关闭辅助系统", "切断主电源"],
+    "forbidden_keywords": ["培训补贴", "海外访问"],
+    "expected_answer": "设备停机应先停止进料或任务，等待当前周期完成，按停机按钮，关闭辅助系统，再切断主电源。",
+    "description": "验证停机流程。"
+  },
+  {
+    "document_file": "rag_device_manual.txt",
+    "question": "设备停机后需要记录什么？",
+    "expected_type": "answerable",
+    "expected_keywords": ["停机时间", "停机原因", "运行状态", "遗留问题"],
+    "forbidden_keywords": ["采购价格", "年终奖"],
+    "expected_answer": "停机后应记录停机时间、停机原因、运行状态和遗留问题。",
+    "description": "验证停机记录内容。"
+  },
+  {
+    "document_file": "rag_device_manual.txt",
+    "question": "设备日常维护包括哪些内容？",
+    "expected_type": "answerable",
+    "expected_keywords": ["清洁设备表面", "检查紧固件", "传感器", "指示灯", "润滑状态"],
+    "forbidden_keywords": ["保修期", "厂家地址"],
+    "expected_answer": "日常维护包括清洁设备表面，检查紧固件、传感器、指示灯和润滑状态，并记录维护结果。",
+    "description": "验证日常维护要求。"
+  },
+  {
+    "document_file": "rag_device_manual.txt",
+    "question": "日常维护时需要检查传感器和指示灯吗？",
+    "expected_type": "answerable",
+    "expected_keywords": ["检查传感器", "指示灯", "正常"],
+    "forbidden_keywords": ["采购价格", "手机 App"],
+    "expected_answer": "日常维护需要检查传感器、指示灯和控制按钮是否正常。",
+    "description": "验证传感器和指示灯检查。"
+  },
+  {
+    "document_file": "rag_device_manual.txt",
+    "question": "设备异常处理原则是什么？",
+    "expected_type": "answerable",
+    "expected_keywords": ["人员安全", "保护设备", "恢复生产", "不得继续运行"],
+    "forbidden_keywords": ["培训费用", "年终奖"],
+    "expected_answer": "设备异常处理应先保证人员安全，再保护设备，最后恢复生产；异常未确认前不得继续运行。",
+    "description": "验证异常处理原则。"
+  },
+  {
+    "document_file": "rag_device_manual.txt",
+    "question": "设备从启动前检查到正常负载运行需要经过哪些关键步骤？",
+    "expected_type": "multi_chunk",
+    "expected_keywords": ["启动前检查", "主电源", "控制面板", "启动按钮", "低速空载", "正常负载"],
+    "forbidden_keywords": ["采购价格", "保修期"],
+    "expected_answer": "应先完成启动前检查，再接通主电源并确认控制面板状态，按启动按钮后进入低速空载观察，确认平稳后再进入正常负载运行。",
+    "description": "综合启动前检查和启动步骤。"
+  },
+  {
+    "document_file": "rag_device_manual.txt",
+    "question": "运行中发现异常报警时，操作人员应如何从运行注意事项和报警处理两方面处理？",
+    "expected_type": "multi_chunk",
+    "expected_keywords": ["记录并上报", "确认报警信息", "报警代码", "降低负载", "通知维护人员"],
+    "forbidden_keywords": ["年终奖", "培训费用"],
+    "expected_answer": "运行中发现异常应记录并上报，同时确认报警信息和报警代码，必要时降低负载并通知维护人员。",
+    "description": "综合运行注意事项和报警处理。"
+  },
+  {
+    "document_file": "rag_device_manual.txt",
+    "question": "设备停机后如何做好现场和后续维护记录？",
+    "expected_type": "multi_chunk",
+    "expected_keywords": ["清理现场", "停机状态", "维护时间", "维护人员", "处理结果"],
+    "forbidden_keywords": ["采购价格", "海外售后"],
+    "expected_answer": "停机后应清理现场并记录停机状态；维护完成后还应记录维护时间、维护人员、检查项目、发现问题和处理结果。",
+    "description": "综合停机流程和日常维护记录。"
+  },
+  {
+    "document_file": "rag_device_manual.txt",
+    "question": "报警涉及安全联锁或过温过压时，应该遵循什么异常处理原则？",
+    "expected_type": "multi_chunk",
+    "expected_keywords": ["安全联锁", "过温", "过压", "停机", "人员安全", "保护设备"],
+    "forbidden_keywords": ["工资标准", "手机 App"],
+    "expected_answer": "报警涉及安全联锁、过温或过压时应按要求停机，并遵循先保证人员安全、再保护设备、最后恢复生产的原则。",
+    "description": "综合报警处理和异常处理原则。"
+  },
+  {
+    "document_file": "rag_device_manual.txt",
+    "question": "设备启动和运行阶段都需要观察哪些状态？",
+    "expected_type": "multi_chunk",
+    "expected_keywords": ["声音", "振动", "压力", "温度", "指示灯", "控制面板"],
+    "forbidden_keywords": ["培训补贴", "保修期"],
+    "expected_answer": "启动低速空载时需要观察声音、振动、压力、温度和指示灯；运行期间也应定期观察温度、压力、振动、声音、指示灯和控制面板提示。",
+    "description": "综合启动观察和运行观察。"
+  },
+  {
+    "document_file": "rag_device_manual.txt",
+    "question": "设备安全相关要求在启动前、运行中和异常时分别体现在哪里？",
+    "expected_type": "multi_chunk",
+    "expected_keywords": ["急停按钮", "防护门", "不得屏蔽报警", "人员安全", "不得继续运行"],
+    "forbidden_keywords": ["采购价格", "海外访问"],
+    "expected_answer": "启动前要确认急停按钮、防护门和人员位置；运行中不得屏蔽报警或绕过安全联锁；异常时先保证人员安全，未确认前不得继续运行。",
+    "description": "综合多个安全相关段落。"
+  },
+  {
+    "document_file": "rag_device_manual.txt",
+    "question": "设备采购价格是多少？",
+    "expected_type": "unanswerable",
+    "expected_keywords": ["未检索到", "相关内容"],
+    "forbidden_keywords": ["启动前检查", "报警处理", "日常维护"],
+    "expected_answer": "当前文档中未检索到与问题相关的内容。",
+    "description": "设备手册不包含采购价格。"
+  },
+  {
+    "document_file": "rag_device_manual.txt",
+    "question": "设备保修期是几年？",
+    "expected_type": "unanswerable",
+    "expected_keywords": ["未检索到", "相关内容"],
+    "forbidden_keywords": ["启动步骤", "停机流程", "润滑状态"],
+    "expected_answer": "当前文档中未检索到与问题相关的内容。",
+    "description": "设备手册不包含保修信息。"
+  },
+  {
+    "document_file": "rag_device_manual.txt",
+    "question": "设备是否支持海外售后？",
+    "expected_type": "unanswerable",
+    "expected_keywords": ["未检索到", "相关内容"],
+    "forbidden_keywords": ["设备报警", "维护人员", "异常处理"],
+    "expected_answer": "当前文档中未检索到与问题相关的内容。",
+    "description": "设备手册不包含海外售后。"
+  },
+  {
+    "document_file": "rag_device_manual.txt",
+    "question": "设备生产厂家地址在哪里？",
+    "expected_type": "unanswerable",
+    "expected_keywords": ["未检索到", "相关内容"],
+    "forbidden_keywords": ["管路接口", "控制面板", "主电源"],
+    "expected_answer": "当前文档中未检索到与问题相关的内容。",
+    "description": "设备手册不包含厂家地址。"
+  },
+  {
+    "document_file": "rag_device_manual.txt",
+    "question": "操作人员工资标准是多少？",
+    "expected_type": "unanswerable",
+    "expected_keywords": ["未检索到", "相关内容"],
+    "forbidden_keywords": ["不得离岗", "记录并上报", "安全状态检查"],
+    "expected_answer": "当前文档中未检索到与问题相关的内容。",
+    "description": "设备手册不包含薪酬信息。"
+  },
+  {
+    "document_file": "rag_device_manual.txt",
+    "question": "系统是否支持手机 App？",
+    "expected_type": "unanswerable",
+    "expected_keywords": ["未检索到", "相关内容"],
+    "forbidden_keywords": ["设备运行", "报警代码", "停机按钮"],
+    "expected_answer": "当前文档中未检索到与问题相关的内容。",
+    "description": "设备手册不包含手机 App 信息。"
+  },
+  {
+    "document_file": "rag_training_manual.md",
+    "question": "培训目标是什么？",
+    "expected_type": "answerable",
+    "expected_keywords": ["理解设备结构", "掌握基本操作", "熟悉安全规范", "识别常见故障"],
+    "forbidden_keywords": ["采购价格", "年终奖"],
+    "expected_answer": "培训目标是理解设备结构，掌握基本操作流程，熟悉安全规范，并能够识别常见故障。",
+    "description": "验证培训目标。"
+  },
+  {
+    "document_file": "rag_training_manual.md",
+    "question": "培训对象包括哪些人？",
+    "expected_type": "answerable",
+    "expected_keywords": ["新员工", "设备操作员", "维护人员", "班组长"],
+    "forbidden_keywords": ["保修期", "厂家地址"],
+    "expected_answer": "培训对象包括新员工、设备操作员、维护人员和班组长。",
+    "description": "验证培训对象。"
+  },
+  {
+    "document_file": "rag_training_manual.md",
+    "question": "培训内容包括哪些模块？",
+    "expected_type": "answerable",
+    "expected_keywords": ["设备基础知识", "操作流程", "安全注意事项", "报警处理", "日常维护", "问答考核"],
+    "forbidden_keywords": ["培训补贴", "工资标准"],
+    "expected_answer": "培训内容包括设备基础知识、操作流程、安全注意事项、报警处理、日常维护和问答考核。",
+    "description": "验证培训内容。"
+  },
+  {
+    "document_file": "rag_training_manual.md",
+    "question": "培训考核标准是什么？",
+    "expected_type": "answerable",
+    "expected_keywords": ["理论测试", "现场操作", "安全规范", "故障判断"],
+    "forbidden_keywords": ["采购价格", "海外访问"],
+    "expected_answer": "培训考核包括理论测试、现场操作、安全规范和故障判断四个方面。",
+    "description": "验证考核标准。"
+  },
+  {
+    "document_file": "rag_training_manual.md",
+    "question": "考核不合格能否独立上岗？",
+    "expected_type": "answerable",
+    "expected_keywords": ["考核不合格", "不得独立上岗", "重新培训", "补充考核"],
+    "forbidden_keywords": ["培训费用", "售后"],
+    "expected_answer": "考核不合格人员不得独立上岗，必须重新培训或补充考核。",
+    "description": "验证不合格上岗限制。"
+  },
+  {
+    "document_file": "rag_training_manual.md",
+    "question": "培训记录需要包含哪些信息？",
+    "expected_type": "answerable",
+    "expected_keywords": ["培训时间", "培训地点", "培训人员", "授课人员", "考核结果"],
+    "forbidden_keywords": ["厂家地址", "保修期"],
+    "expected_answer": "培训记录应包括培训时间、培训地点、培训人员、授课人员、培训主题、考核结果和整改要求。",
+    "description": "验证培训记录字段。"
+  },
+  {
+    "document_file": "rag_training_manual.md",
+    "question": "班组长在培训中需要负责什么？",
+    "expected_type": "answerable",
+    "expected_keywords": ["现场监督", "记录复核", "异常上报"],
+    "forbidden_keywords": ["采购价格", "补贴"],
+    "expected_answer": "班组长需要理解操作标准和考核要求，负责现场监督、记录复核和异常上报。",
+    "description": "验证班组长职责。"
+  },
+  {
+    "document_file": "rag_training_manual.md",
+    "question": "培训中的报警处理要求学员理解什么？",
+    "expected_type": "answerable",
+    "expected_keywords": ["报警代码", "负载降低", "停机条件", "维护通知"],
+    "forbidden_keywords": ["年终奖", "海外售后"],
+    "expected_answer": "报警处理要求学员理解报警代码、负载降低、停机条件和维护通知。",
+    "description": "验证培训中的报警处理内容。"
+  },
+  {
+    "document_file": "rag_training_manual.md",
+    "question": "新员工完成培训后应具备哪些能力？",
+    "expected_type": "multi_chunk",
+    "expected_keywords": ["安全意识", "设备结构", "基本操作", "安全规范", "常见故障"],
+    "forbidden_keywords": ["采购价格", "工资标准"],
+    "expected_answer": "新员工应建立基本安全意识，并理解设备结构、掌握基本操作、熟悉安全规范、识别常见故障。",
+    "description": "综合培训目标和培训对象。"
+  },
+  {
+    "document_file": "rag_training_manual.md",
+    "question": "设备操作员培训需要覆盖哪些操作和安全内容？",
+    "expected_type": "multi_chunk",
+    "expected_keywords": ["标准操作流程", "启动前检查", "启动步骤", "运行观察", "停机流程", "安全注意事项"],
+    "forbidden_keywords": ["保修期", "培训补贴"],
+    "expected_answer": "设备操作员需要掌握标准操作流程，培训内容应覆盖启动前检查、启动步骤、运行观察、停机流程和安全注意事项。",
+    "description": "综合培训对象和培训内容。"
+  },
+  {
+    "document_file": "rag_training_manual.md",
+    "question": "培训考核和记录管理如何共同支持岗位授权？",
+    "expected_type": "multi_chunk",
+    "expected_keywords": ["考核结果", "不得独立上岗", "记录归档", "岗位授权"],
+    "forbidden_keywords": ["采购价格", "海外访问"],
+    "expected_answer": "考核结果用于判断人员能否独立上岗，培训记录归档后可用于证明人员已接受必要培训并支持岗位授权。",
+    "description": "综合考核标准和记录管理。"
+  },
+  {
+    "document_file": "rag_training_manual.md",
+    "question": "设备改造后为什么需要关注培训记录？",
+    "expected_type": "multi_chunk",
+    "expected_keywords": ["设备改造", "再培训", "记录", "岗位授权", "风险"],
+    "forbidden_keywords": ["年终奖", "采购价格"],
+    "expected_answer": "设备改造后的再培训应在记录中单独说明，记录可用于追踪操作风险、事故复盘和岗位授权情况。",
+    "description": "综合培训记录和风险追踪。"
+  },
+  {
+    "document_file": "rag_training_manual.md",
+    "question": "培训费用是多少？",
+    "expected_type": "unanswerable",
+    "expected_keywords": ["未检索到", "相关内容"],
+    "forbidden_keywords": ["培训目标", "培训对象", "考核标准"],
+    "expected_answer": "当前文档中未检索到与问题相关的内容。",
+    "description": "培训资料不包含费用。"
+  },
+  {
+    "document_file": "rag_training_manual.md",
+    "question": "培训是否发补贴？",
+    "expected_type": "unanswerable",
+    "expected_keywords": ["未检索到", "相关内容"],
+    "forbidden_keywords": ["培训记录", "考核结果", "安全规范"],
+    "expected_answer": "当前文档中未检索到与问题相关的内容。",
+    "description": "培训资料不包含补贴。"
+  },
+  {
+    "document_file": "rag_training_manual.md",
+    "question": "公司年终奖怎么算？",
+    "expected_type": "unanswerable",
+    "expected_keywords": ["未检索到", "相关内容"],
+    "forbidden_keywords": ["理论测试", "现场操作", "培训人员"],
+    "expected_answer": "当前文档中未检索到与问题相关的内容。",
+    "description": "培训资料不包含年终奖规则。"
+  },
+  {
+    "document_file": "rag_faq_manual.txt",
+    "question": "账号无法登录怎么办？",
+    "expected_type": "answerable",
+    "expected_keywords": ["用户名", "密码", "验证码", "网络连接", "系统管理员"],
+    "forbidden_keywords": ["采购价格", "年终奖"],
+    "expected_answer": "账号无法登录时应先确认用户名、密码和验证码，再检查网络连接，必要时联系系统管理员。",
+    "description": "验证登录 FAQ。"
+  },
+  {
+    "document_file": "rag_faq_manual.txt",
+    "question": "账号连续多次登录失败可能是什么原因？",
+    "expected_type": "answerable",
+    "expected_keywords": ["连续多次登录失败", "临时锁定", "重试", "管理员"],
+    "forbidden_keywords": ["设备启动", "报警处理"],
+    "expected_answer": "连续多次登录失败时账号可能被临时锁定，应等待锁定时间结束后重试或联系管理员。",
+    "description": "验证账号锁定说明。"
+  },
+  {
+    "document_file": "rag_faq_manual.txt",
+    "question": "忘记密码怎么办？",
+    "expected_type": "answerable",
+    "expected_keywords": ["密码重置", "身份验证", "系统管理员", "修改为个人密码"],
+    "forbidden_keywords": ["采购价格", "日常维护"],
+    "expected_answer": "忘记密码时应优先使用密码重置功能，无法自助重置时联系系统管理员。",
+    "description": "验证密码重置 FAQ。"
+  },
+  {
+    "document_file": "rag_faq_manual.txt",
+    "question": "如何查询文档资料？",
+    "expected_type": "answerable",
+    "expected_keywords": ["文档管理", "知识库问答", "选择文档", "输入具体问题", "来源片段"],
+    "forbidden_keywords": ["保修期", "培训补贴"],
+    "expected_answer": "查询文档资料时应进入文档管理或知识库问答页面，选择文档并输入具体问题，系统会返回回答和来源片段。",
+    "description": "验证文档查询 FAQ。"
+  },
+  {
+    "document_file": "rag_faq_manual.txt",
+    "question": "如何提交问题反馈？",
+    "expected_type": "answerable",
+    "expected_keywords": ["页面", "操作步骤", "出现时间", "影响范围", "request_id"],
+    "forbidden_keywords": ["厂家地址", "工资标准"],
+    "expected_answer": "提交反馈时应说明问题页面、操作步骤、出现时间、影响范围和期望结果，涉及报错时附上截图和 request_id。",
+    "description": "验证问题反馈 FAQ。"
+  },
+  {
+    "document_file": "rag_faq_manual.txt",
+    "question": "系统打不开怎么办？",
+    "expected_type": "answerable",
+    "expected_keywords": ["网络", "访问地址", "FastAPI", "Streamlit", "Docker Compose", "端口"],
+    "forbidden_keywords": ["采购价格", "培训考核"],
+    "expected_answer": "系统打不开时应检查网络和访问地址，确认 FastAPI 与 Streamlit 已启动，Docker 环境还要检查容器状态和端口。",
+    "description": "验证系统访问 FAQ。"
+  },
+  {
+    "document_file": "rag_faq_manual.txt",
+    "question": "文档上传失败怎么办？",
+    "expected_type": "answerable",
+    "expected_keywords": ["文件格式", "txt", "md", "docx", "文本型 PDF", "复杂表格"],
+    "forbidden_keywords": ["年终奖", "海外售后"],
+    "expected_answer": "文档上传失败时应检查文件格式、文件是否为空，以及是否为扫描图片、复杂表格或加密文件。",
+    "description": "验证上传失败 FAQ。"
+  },
+  {
+    "document_file": "rag_faq_manual.txt",
+    "question": "问答结果不准确怎么办？",
+    "expected_type": "answerable",
+    "expected_keywords": ["retrieval_source", "source_chunks", "request_id", "重新入库"],
+    "forbidden_keywords": ["采购价格", "工资标准"],
+    "expected_answer": "问答结果不准确时应查看 retrieval_source 和 source_chunks，记录问题、回答、来源片段和 request_id，必要时执行重新入库。",
+    "description": "验证问答不准确处理 FAQ。"
+  },
+  {
+    "document_file": "rag_faq_manual.txt",
+    "question": "如果问答结果不准确，应该如何判断是检索问题还是生成问题？",
+    "expected_type": "multi_chunk",
+    "expected_keywords": ["retrieval_source", "source_chunks", "检索效果", "生成逻辑", "日志"],
+    "forbidden_keywords": ["保修期", "采购价格"],
+    "expected_answer": "应先查看 retrieval_source 和 source_chunks；若片段无关，多半与文档结构、切分或重排有关，若片段相关但回答偏离，则应检查 Prompt、生成和校验日志。",
+    "description": "综合问答结果和问题反馈 FAQ。"
+  },
+  {
+    "document_file": "rag_faq_manual.txt",
+    "question": "系统打不开时，在本地演示和 Docker 环境分别要检查什么？",
+    "expected_type": "multi_chunk",
+    "expected_keywords": ["FastAPI", "Streamlit", "Docker Compose", "容器", "端口 8000", "端口 8501"],
+    "forbidden_keywords": ["培训补贴", "厂家地址"],
+    "expected_answer": "本地演示应确认 FastAPI 和 Streamlit 已启动；Docker 环境应确认容器运行，并检查 8000 和 8501 端口是否被占用。",
+    "description": "综合系统打不开 FAQ。"
+  },
+  {
+    "document_file": "rag_faq_manual.txt",
+    "question": "账号无法登录时系统会自动发短信验证码吗？",
+    "expected_type": "unanswerable",
+    "expected_keywords": ["未检索到", "相关内容"],
+    "forbidden_keywords": ["用户名", "密码", "验证码", "系统管理员"],
+    "expected_answer": "当前文档中未检索到与问题相关的内容。",
+    "description": "FAQ 不包含短信验证码能力。"
+  },
+  {
+    "document_file": "rag_faq_manual.txt",
+    "question": "系统是否支持手机 App？",
+    "expected_type": "unanswerable",
+    "expected_keywords": ["未检索到", "相关内容"],
+    "forbidden_keywords": ["文档管理", "知识库问答", "source_chunks"],
+    "expected_answer": "当前文档中未检索到与问题相关的内容。",
+    "description": "FAQ 不包含手机 App。"
+  },
+  {
+    "document_file": "rag_faq_manual.txt",
+    "question": "是否支持海外访问？",
+    "expected_type": "unanswerable",
+    "expected_keywords": ["未检索到", "相关内容"],
+    "forbidden_keywords": ["FastAPI", "Streamlit", "Docker Compose"],
+    "expected_answer": "当前文档中未检索到与问题相关的内容。",
+    "description": "FAQ 不包含海外访问。"
+  },
+  {
+    "document_file": "rag_faq_manual.txt",
+    "question": "文档资料是否可以导出为 Excel？",
+    "expected_type": "unanswerable",
+    "expected_keywords": ["未检索到", "相关内容"],
+    "forbidden_keywords": ["文档管理", "选择文档", "来源片段"],
+    "expected_answer": "当前文档中未检索到与问题相关的内容。",
+    "description": "FAQ 不包含 Excel 导出。"
+  },
+  {
+    "document_file": "rag_faq_manual.txt",
+    "question": "问题反馈多久会处理完成？",
+    "expected_type": "unanswerable",
+    "expected_keywords": ["未检索到", "相关内容"],
+    "forbidden_keywords": ["操作步骤", "出现时间", "request_id"],
+    "expected_answer": "当前文档中未检索到与问题相关的内容。",
+    "description": "FAQ 不包含处理时限。"
+  },
+  {
+    "document_file": "rag_faq_manual.txt",
+    "question": "系统是否收费？",
+    "expected_type": "unanswerable",
+    "expected_keywords": ["未检索到", "相关内容"],
+    "forbidden_keywords": ["文档上传失败", "问答结果", "系统打不开"],
+    "expected_answer": "当前文档中未检索到与问题相关的内容。",
+    "description": "FAQ 不包含收费信息。"
+  }
+]
