@@ -55,30 +55,14 @@ class DocumentQAService:
         )
 
     async def upload_document(self, upload: UploadFile) -> DocumentUploadResponse:
-        original_name = Path(upload.filename or "document.txt").name.strip() or "document.txt"
-        safe_name = self._sanitize_filename(original_name)
-        suffix = Path(safe_name).suffix.lower()
-        if suffix not in SUPPORTED_EXTENSIONS:
-            raise ValueError("Only .txt, .md, .docx, and text-based .pdf files are supported.")
-
-        content = await upload.read()
-        if not content:
-            raise ValueError("Uploaded document is empty.")
-
-        document_id = str(uuid4())
-        stored_name = f"{document_id}_{safe_name}"
-        file_path = self.storage_dir / stored_name
-        file_path.write_bytes(content)
-        self.storage_service.upsert_document(
-            document_id=document_id,
-            original_file_name=original_name,
-            stored_file_name=stored_name,
-            file_path=str(file_path),
-            file_type=suffix.lstrip("."),
-            status="success",
-            chunk_count=0,
-            vector_indexed=False,
+        document = await self._store_uploaded_document(
+            upload,
+            initial_status="success",
         )
+        document_id = str(document["document_id"])
+        stored_name = str(document["stored_file_name"])
+        file_path = Path(str(document["file_path"]))
+        file_type = str(document["file_type"])
         chunk_count, vector_indexed, vector_error = self._index_uploaded_document(
             document_id=document_id,
             file_path=file_path,
@@ -97,12 +81,25 @@ class DocumentQAService:
             document_id=document_id,
             file_name=stored_name,
             file_path=str(file_path),
-            file_type=suffix.lstrip("."),
+            file_type=file_type,
             status="success",
             message=message,
             chunk_count=chunk_count,
             vector_indexed=vector_indexed,
             vector_error=vector_error,
+        )
+
+    async def save_document_for_ingestion(
+        self,
+        upload: UploadFile,
+        *,
+        max_size_bytes: int,
+    ) -> dict[str, object]:
+        """Validate and persist an upload without parsing or vector indexing."""
+        return await self._store_uploaded_document(
+            upload,
+            initial_status="pending",
+            max_size_bytes=max_size_bytes,
         )
 
     async def upload_document_api(self, upload: UploadFile) -> UploadApiResponse:
@@ -579,6 +576,10 @@ class DocumentQAService:
                 vector_indexed=False,
             )
 
+    def get_document_vector_count(self, document_id: str) -> int:
+        """Return the persisted vector count for post-ingestion verification."""
+        return get_vector_store().get_document_chunk_count(document_id)
+
     def batch_delete_documents(self, document_ids: list[str]) -> BatchDeleteDocumentsResponse:
         request_id = str(uuid4())
         start = perf_counter()
@@ -669,6 +670,47 @@ class DocumentQAService:
             return matches[0]
 
         return self.storage_dir / document_id
+
+    async def _store_uploaded_document(
+        self,
+        upload: UploadFile,
+        *,
+        initial_status: str,
+        max_size_bytes: int | None = None,
+    ) -> dict[str, object]:
+        original_name = Path(upload.filename or "document.txt").name.strip() or "document.txt"
+        safe_name = self._sanitize_filename(original_name)
+        suffix = Path(safe_name).suffix.lower()
+        if suffix not in SUPPORTED_EXTENSIONS:
+            raise ValueError("Only .txt, .md, .docx, and text-based .pdf files are supported.")
+
+        content = await upload.read()
+        if not content:
+            raise ValueError("Uploaded document is empty.")
+        if max_size_bytes is not None and len(content) > max(1, int(max_size_bytes)):
+            raise ValueError(
+                f"Uploaded document exceeds the {max_size_bytes} byte size limit."
+            )
+
+        document_id = str(uuid4())
+        stored_name = f"{document_id}_{safe_name}"
+        file_path = self.storage_dir / stored_name
+        file_path.write_bytes(content)
+        try:
+            document = self.storage_service.upsert_document(
+                document_id=document_id,
+                original_file_name=original_name,
+                stored_file_name=stored_name,
+                file_path=str(file_path),
+                file_type=suffix.lstrip("."),
+                status=initial_status,
+                chunk_count=0,
+                vector_indexed=False,
+            )
+        except Exception:
+            file_path.unlink(missing_ok=True)
+            raise
+        return document
 
     def _resolve_direct_file_path(self, file_path: str) -> Path:
         target = Path(file_path)

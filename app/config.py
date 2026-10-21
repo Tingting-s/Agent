@@ -52,6 +52,29 @@ class Settings(BaseModel):
     UPLOAD_DIR: str = Field(default=_env("UPLOAD_DIR", str(BASE_DIR / "uploads")))
     CHROMA_DIR: str = Field(default=_env("CHROMA_DIR", str(BASE_DIR / "chroma_db")))
     LOG_DIR: str = Field(default=_env("LOG_DIR", str(BASE_DIR / "logs")))
+    MAX_ASYNC_UPLOAD_SIZE_MB: int = Field(
+        default=int(_env("MAX_ASYNC_UPLOAD_SIZE_MB", "20"))
+    )
+    CELERY_BROKER_URL: str = Field(default=_env("CELERY_BROKER_URL", "redis://127.0.0.1:6379/0"))
+    CELERY_RESULT_BACKEND: str = Field(
+        default=_env("CELERY_RESULT_BACKEND", "redis://127.0.0.1:6379/1")
+    )
+    CELERY_TASK_ALWAYS_EAGER: bool = Field(
+        default=_env("CELERY_TASK_ALWAYS_EAGER", "false").lower() == "true"
+    )
+    CELERY_TASK_MAX_RETRIES: int = Field(default=int(_env("CELERY_TASK_MAX_RETRIES", "3")))
+    CELERY_TASK_RETRY_DELAY: int = Field(default=int(_env("CELERY_TASK_RETRY_DELAY", "5")))
+    CELERY_TASK_SOFT_TIME_LIMIT: int = Field(
+        default=int(_env("CELERY_TASK_SOFT_TIME_LIMIT", "900"))
+    )
+    CELERY_TASK_TIME_LIMIT: int = Field(default=int(_env("CELERY_TASK_TIME_LIMIT", "960")))
+    CELERY_RESULT_EXPIRES: int = Field(default=int(_env("CELERY_RESULT_EXPIRES", "86400")))
+    CELERY_VISIBILITY_TIMEOUT: int = Field(
+        default=int(_env("CELERY_VISIBILITY_TIMEOUT", "3600"))
+    )
+    CHROMA_WRITE_LOCK_TIMEOUT_SECONDS: int = Field(
+        default=int(_env("CHROMA_WRITE_LOCK_TIMEOUT_SECONDS", "900"))
+    )
 
 
 @lru_cache

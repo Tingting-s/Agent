@@ -52,6 +52,17 @@ class DocumentReindexApiResponse(ApiResponseBase):
     vector_indexed: bool = Field(default=False, description="Whether chunks were indexed into the vector store.")
 
 
+class DocumentIngestionTaskApiResponse(ApiResponseBase):
+    task_id: str = Field(..., description="SQLite and Celery ingestion task identifier.")
+    document_id: str = Field(..., description="Document associated with the ingestion task.")
+    operation: str = Field(..., description="Ingestion operation: UPLOAD or REINDEX.")
+    retry_count: int = Field(default=0, ge=0, description="Completed retry attempts.")
+    chunk_count: int = Field(default=0, ge=0, description="Indexed chunk count.")
+    vector_indexed: bool = Field(default=False, description="Whether vector indexing completed.")
+    created_time: str = Field(default="", description="Task creation timestamp.")
+    updated_time: str = Field(default="", description="Task update timestamp.")
+
+
 class BatchDeleteDocumentsRequest(BaseModel):
     document_ids: list[str] = Field(default_factory=list, description="Document identifiers to delete.")
 
