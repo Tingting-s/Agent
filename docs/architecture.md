@@ -26,8 +26,10 @@ app/
 ├── rag/       RAG 基础能力
 ├── schemas/   Pydantic 模型
 ├── services/  业务服务
+├── tasks/     Celery 文档入库任务
 ├── tools/     legacy 工具兼容
 ├── utils/     通用工具
+├── celery_app.py Celery 应用配置
 ├── config.py  配置加载
 ├── main.py    FastAPI 应用入口
 └── prompts.py Prompt 常量
@@ -37,7 +39,7 @@ app/
 
 FastAPI 位于 `app/api`，负责：
 
-- 暴露健康检查、文档管理、问答、日志和 legacy task 接口。
+- 暴露健康检查、同步/异步文档管理、任务状态查询、问答、日志和 legacy task 接口。
 - 使用 Pydantic response model 保持对外 Schema 稳定。
 - 通过统一异常处理返回结构化错误。
 
@@ -49,10 +51,27 @@ Service 层位于 `app/services`，负责业务用例编排：
 
 - `document_qa_service.py`：文档上传、重新入库、问答、摘要、删除和日志查询。
 - `document_storage_service.py`：SQLite 文档元数据持久化。
+- `ingestion_task_service.py`：SQLite 入库任务状态、状态流转、重复任务保护和文档操作锁。
 - `llm_service.py`：LLM 调用和重试策略。
 - `qa_log_service.py`：问答日志写入和读取。
 - `legacy_task_service.py`：旧 task 接口兼容。
 - `task_service.py`：历史 `TaskService` 名称兼容入口。
+
+## Celery 与异步入库
+
+异步上传与重新入库复用同步路径中的 `DocumentQAService`，没有维护第二套解析、切分或向量写入实现：
+
+```text
+FastAPI
+  -> 保存上传文件和文档元数据
+  -> SQLite 创建 PENDING 任务
+  -> Redis 发布 Celery 消息
+  -> 独立 Worker 标记 PROCESSING
+  -> DocumentQAService 解析、切分、Embedding、写入 Chroma
+  -> SQLite 记录 SUCCESS 或 FAILURE
+```
+
+SQLite 的 `task_id` 同时作为 Celery task ID。活跃任务唯一约束防止同一文档重复提交；稳定向量 ID 与 upsert 支持重复执行。SQLite 与 Chroma 不具备跨系统原子事务，Worker 重投递也不是 exactly-once 保证。
 
 ## LangGraph
 

@@ -18,7 +18,7 @@ flowchart TD
     Logging --> Response[API Response]
 ```
 
-## 文档入库流程
+## 同步文档入库流程
 
 ```mermaid
 flowchart TD
@@ -39,6 +39,33 @@ flowchart TD
 - 文档元数据保存在 SQLite。
 - chunk 向量写入 `chroma_db/`。
 - 运行时数据不提交到 Git。
+
+同步接口在 HTTP 请求中完成解析、切分、Embedding 和 Chroma 入库，适合本地调试和向后兼容。
+
+## 异步文档入库流程
+
+```mermaid
+flowchart TD
+    Upload[POST upload/async] --> Save[Save Upload and Metadata]
+    Save --> Pending[SQLite Task: PENDING]
+    Pending --> Redis[Redis Broker]
+    Redis --> Worker[Celery Worker]
+    Worker --> Processing[SQLite Task: PROCESSING]
+    Processing --> Parse[Parse and Split]
+    Parse --> Embed[Embedding]
+    Embed --> Lock[Cross-process Chroma Write Lock]
+    Lock --> Chroma[Chroma Upsert]
+    Chroma --> Success[SQLite Task: SUCCESS]
+    Processing --> Retry[Bounded Retry]
+    Retry --> Processing
+    Processing --> Failure[SQLite Task: FAILURE]
+```
+
+异步接口只在请求中校验并保存文件、创建文档元数据和发布任务，成功时返回 `202`、`task_id` 与 `document_id`。任务状态由 SQLite 持久化，可通过 `GET /api/documents/tasks/{task_id}` 查询。Redis 投递失败不会返回虚假成功：任务进入 `FAILURE`，上传场景可通过异步 reindex 创建新任务恢复。
+
+同一文档只有一个 `PENDING` 或 `PROCESSING` 任务。活动任务期间，同步 reindex 和删除返回 `409`。不同文档可以并发提交，但 Chroma 的写入和删除会通过共享目录中的 SQLite 锁串行化。
+
+Worker 使用 `acks_late`、Redis visibility timeout 和有限重试降低异常中断影响，但这些机制不提供 exactly-once 保证，也不保证 Worker 强制退出后任务状态立即恢复。
 
 ## RAG 检索流程
 

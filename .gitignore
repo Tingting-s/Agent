@@ -1,15 +1,73 @@
+# Local environment and credentials
 .env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# IDE and OS metadata
 .idea/
-uploads/
-logs/
-chroma_db/
-chroma_db_backup_*/
-data/
-!data/
-data/*
-!data/.gitkeep
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Runtime data
+/uploads/
+/logs/
+*.log
+/chroma_db/
+/chroma_db_backup_*/
+/data/
+!/data/
+/data/*
+!/data/.gitkeep
+*.db
+*.sqlite
+*.sqlite3
+
+# Model weights and caches
+/model_cache/
+/models/
+.cache/
+hf_cache/
+.huggingface/
+*.safetensors
+*.pt
+*.pth
+*.onnx
+
+# Python environments and caches
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+
+# Tests and coverage
 .pytest_cache/
 pytest-cache-files-*/
-__pycache__/
-*.pyc
-tests/tmp_chroma_db/
+/tests/tmp_chroma_db/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+
+# Docker and local integration-test data
+/docker-test-data/
+/.docker-test/
+
+# Build outputs
+/build/
+/dist/
+*.egg-info/
+
+# Personal working notes: keep locally, do not publish
+/INTERVIEW_NOTES.md
+/SUBMIT_CHECKLIST.md

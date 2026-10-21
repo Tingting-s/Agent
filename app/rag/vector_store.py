@@ -4,11 +4,13 @@ import hashlib
 import importlib.util
 import logging
 import math
+import sqlite3
 import subprocess
 import sys
+from contextlib import contextmanager
 from pathlib import Path
 from time import perf_counter
-from typing import Any
+from typing import Any, Iterator
 
 from app.config import get_chroma_dir, get_settings
 
@@ -206,10 +208,20 @@ class ChromaVectorStore:
         persist_directory: str | Path | None = None,
         collection_name: str = DEFAULT_COLLECTION_NAME,
         embedding_function: Any | None = None,
+        write_lock_timeout_seconds: int | None = None,
     ) -> None:
+        settings = get_settings()
         self.persist_directory = Path(persist_directory or get_chroma_dir())
         self.collection_name = collection_name
         self.embedding_function = embedding_function or SentenceTransformerEmbeddingFunction()
+        self.write_lock_timeout_seconds = max(
+            int(
+                write_lock_timeout_seconds
+                if write_lock_timeout_seconds is not None
+                else settings.CHROMA_WRITE_LOCK_TIMEOUT_SECONDS
+            ),
+            1,
+        )
         self._client: Any | None = None
         self._collection: Any | None = None
 
@@ -234,9 +246,11 @@ class ChromaVectorStore:
             self._metadata(document_id=document_id, file_name=file_name, chunk=chunk)
             for chunk in usable_chunks
         ]
-        self.collection.upsert(ids=ids, documents=documents, metadatas=metadatas)
-        document_chunk_count = self.get_document_chunk_count(document_id)
-        collection_total_count = self._collection_total_count()
+        collection = self.collection
+        with self._write_lock():
+            collection.upsert(ids=ids, documents=documents, metadatas=metadatas)
+            document_chunk_count = self.get_document_chunk_count(document_id)
+            collection_total_count = self._collection_total_count()
         LOGGER.info(
             "Chroma upsert completed: document_id=%s file_name=%s chunk_count=%s document_chunk_count=%s collection_total_count=%s collection=%s",
             document_id,
@@ -312,9 +326,11 @@ class ChromaVectorStore:
     def delete_document(self, document_id: str) -> int:
         if not document_id:
             return 0
-        before_count = self.get_document_chunk_count(document_id)
-        self.collection.delete(where={"document_id": document_id})
-        after_count = self.get_document_chunk_count(document_id)
+        collection = self.collection
+        with self._write_lock():
+            before_count = self.get_document_chunk_count(document_id)
+            collection.delete(where={"document_id": document_id})
+            after_count = self.get_document_chunk_count(document_id)
         deleted_count = max(before_count - after_count, 0)
         LOGGER.info(
             "Chroma document vectors deleted: document_id=%s deleted_count=%s collection=%s",
@@ -387,12 +403,13 @@ class ChromaVectorStore:
             return LocalVectorCollection(embedding_function=self.embedding_function)
 
         try:
-            self._client = chromadb.PersistentClient(path=str(self.persist_directory))
-            collection = self._client.get_or_create_collection(
-                name=self.collection_name,
-                embedding_function=self.embedding_function,
-                metadata={"hnsw:space": "cosine"},
-            )
+            with self._write_lock():
+                self._client = chromadb.PersistentClient(path=str(self.persist_directory))
+                collection = self._client.get_or_create_collection(
+                    name=self.collection_name,
+                    embedding_function=self.embedding_function,
+                    metadata={"hnsw:space": "cosine"},
+                )
             LOGGER.info(
                 "Chroma initialized: persist_directory=%s exists=%s collection=%s chromadb_version=%s",
                 self.persist_directory,
@@ -413,6 +430,29 @@ class ChromaVectorStore:
                 exc,
             )
             raise VectorStoreError(self._initialization_error_message(exc)) from exc
+
+    @contextmanager
+    def _write_lock(self) -> Iterator[None]:
+        """Serialize local Chroma mutations across API and worker processes."""
+        self.persist_directory.mkdir(parents=True, exist_ok=True)
+        lock_path = self.persist_directory / ".chroma-write-lock.sqlite3"
+        timeout = self.write_lock_timeout_seconds
+        connection = sqlite3.connect(
+            str(lock_path),
+            timeout=timeout,
+            isolation_level=None,
+        )
+        connection.execute(f"PRAGMA busy_timeout = {timeout * 1000}")
+        try:
+            connection.execute("BEGIN IMMEDIATE")
+            yield
+            connection.commit()
+        except Exception:
+            if connection.in_transaction:
+                connection.rollback()
+            raise
+        finally:
+            connection.close()
 
     def _import_chromadb(self) -> Any:
         self._validate_chromadb_runtime()

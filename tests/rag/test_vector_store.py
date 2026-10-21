@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import logging
 import sys
+from threading import Event, Thread
 from types import SimpleNamespace
 from uuid import uuid4
 
@@ -193,6 +194,40 @@ def test_vector_store_counts_and_deletes_document_chunks(tmp_path) -> None:
     store.delete_document("doc-1")
 
     assert store.get_document_chunk_count("doc-1") == 0
+
+
+def test_vector_store_write_lock_serializes_independent_instances(tmp_path) -> None:
+    persist_directory = tmp_path / "shared_chroma_db"
+    first = ChromaVectorStore(
+        persist_directory=persist_directory,
+        write_lock_timeout_seconds=2,
+    )
+    second = ChromaVectorStore(
+        persist_directory=persist_directory,
+        write_lock_timeout_seconds=2,
+    )
+    started = Event()
+    acquired = Event()
+    errors: list[Exception] = []
+
+    def acquire_second_lock() -> None:
+        started.set()
+        try:
+            with second._write_lock():
+                acquired.set()
+        except Exception as exc:  # pragma: no cover - asserted through errors.
+            errors.append(exc)
+
+    thread = Thread(target=acquire_second_lock)
+    with first._write_lock():
+        thread.start()
+        assert started.wait(timeout=1)
+        assert not acquired.wait(timeout=0.2)
+
+    thread.join(timeout=2)
+    assert not thread.is_alive()
+    assert acquired.is_set()
+    assert errors == []
 
 
 def test_sentence_transformer_embedding_uses_model_factory() -> None:
